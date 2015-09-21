@@ -29,7 +29,7 @@ namespace eRestaurantSystem.Entities
         //the SQL ReservationTable resolves this problem however ReseravtionTable holds only a compound primary key
         //We will not create a SQL ReservationTable entity in our project but handle it via navigation mapping therefore we will place a ICollection properties in this entity refering to the table Reservations
 
-        public virtual ICollection<Reservation> Reservation { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
         public Table()
         {
             Available = true;

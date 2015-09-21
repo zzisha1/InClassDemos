@@ -29,6 +29,13 @@ namespace eRestaurantSystem.Entities
 
         public string Description { get; set; }
 
+        
+        public bool Active { get; set; }
+
+        //navigation virtual property (s)
+
+        public virtual ICollection<Reservation> Reservations { get; set; }
+
         //all classes can have their own constructor
         //constructors can contain initialization values
         
@@ -37,11 +44,5 @@ namespace eRestaurantSystem.Entities
             Active = true;
 
         }
-        public bool Active { get; set; }
-
-        //navigation virtual property (s)
-
-        public virtual ICollection<Reservation> Reservation { get; set; }
-
     }
 }
