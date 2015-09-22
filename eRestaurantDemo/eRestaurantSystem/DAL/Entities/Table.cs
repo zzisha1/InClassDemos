@@ -9,7 +9,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 #endregion
 
-namespace eRestaurantSystem.Entities
+namespace eRestaurantSystem.DAL.Entities
 {
     public class Table
     {
@@ -17,7 +17,7 @@ namespace eRestaurantSystem.Entities
         public int TableID { get; set; }
 
 
-        [Required,Range(1,25)]
+        [Required,Range(1,25)]  
         public byte TableNumber { get; set; }
         public bool Smoking { get; set; }
         public int Capacity { get; set; }
