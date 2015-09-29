@@ -26,7 +26,7 @@ namespace eRestaurantSystem.DAL.Entities
 
         [StringLength(15)]
 
-        public int ContactPhone { get; set; }
+        public string ContactPhone { get; set; }
         
         [Required, StringLength(1, MinimumLength=1)]
         public string ReservationStatus { get; set; }
