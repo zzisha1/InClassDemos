@@ -39,8 +39,10 @@ namespace eRestaurantSystem.DAL.Entities
 
         //the reservation table is 'many to many' relationship to tables table
         //the SQL ReservationTable resolves this problem however ReseravtionTable holds only a compound primary key
-        //We will not create a SQL ReservationTable entity in our project but handle it via navigation mapping therefore we will place a ICollection properties in this entity refering to the table Tables
+        //We will not create a SQL ReservationTable entity in our project but handle it via navigation mapping therefore
+        //we will place a ICollection properties in this entity refering to the table Tables
 
         public virtual ICollection<Table> Tables { get; set; }
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }
