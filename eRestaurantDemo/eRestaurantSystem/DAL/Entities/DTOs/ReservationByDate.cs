@@ -17,6 +17,6 @@ namespace eRestaurantSystem.DAL.Entities.DTOs
         //the rest of the data will be a collection of POCO rows
         //the actual POCO will be defined in the LINQ query
 
-        public IEnumerable Reservation { get; set; }
+        public IEnumerable Reservations { get; set; }
     }
 }
