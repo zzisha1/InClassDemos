@@ -57,6 +57,7 @@
                         <li><a runat="server" href="~/SamplePages/Listview">ListView display</a></li>
                         <li><a runat="server" href="~/SamplePages/ReservationsByDate">Repeater</a></li>
                         <li><a runat="server" href="~/Command Pages/SpecialEventsAdmin">Command</a></li>
+                        <li><a runat="server" href="~/Command Pages/WaiterAdmin">Waiter CRUD</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

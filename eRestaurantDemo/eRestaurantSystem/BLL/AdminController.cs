@@ -179,6 +179,102 @@ namespace eRestaurantSystem.BLL
             }
 
         }
+        
+        
+        //waiter CRUD
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Waiter> Waiter_List()
+        {
+            using (var context = new eRestaurantContext())
+            {
+                //retrieve the data from the specialEvent table
+                //to do so we will use the DBset in eRestaurantContext 
+                //call SoecialEvents (done by mapping)
+
+                //method syntax
+                //return context.SpecialEvents.OrderBy(x => x.Description).ToList();
+
+                //query syntax 
+                var results = from item in context.Waiters
+                              orderby item.FirstName, item.LastName
+                              select item;
+                return results.ToList();
+
+            }
+        }
+
+        public void Waiters_Add(Waiter item)
+        {
+            //input into this method at the instance level
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                //create a pointer variable for the instance type
+                //set this pointer to null
+                Waiter added = null;
+                //setup the add request for the dbcontext
+                added = context.Waiters.Add(item);
+
+                //saving the changes will cause the .Add to execute
+
+                //commits the Add to database
+                //evaluates the annotation (validation) on your entity
+                context.SaveChanges();
+
+            }
+
+
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
+        public void Waiter_Update(Waiter item)
+        {
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                context.Entry<Waiter>(context.Waiters.Attach(item)).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public void Waiter_Delete(Waiter item)
+        {
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                //lookup the item instance to determine if the instance exists
+                Waiter existing = context.Waiters.Find(item.WaiterID);
+                //setup the delete request command
+                context.Waiters.Remove(existing);
+                //commit the action to happen.
+                context.SaveChanges();
+
+            }
+
+        }
+
+         [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public Waiter GetWaiterByID(int waiterId)
+        {
+            using (var context = new eRestaurantContext())
+            {
+                //retrieve the data from the specialEvent table
+                //to do so we will use the DBset in eRestaurantContext 
+                //call SoecialEvents (done by mapping)
+
+                //method syntax
+                //return context.SpecialEvents.OrderBy(x => x.Description).ToList();
+
+                //query syntax 
+                var results = from item in context.Waiters
+                              where item.WaiterID == waiterId 
+                              select item;
+                return results.FirstOrDefault();
+
+            }
+        }
         #endregion
+
+
     } //eof class
 } //eof namespace
