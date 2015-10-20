@@ -10,8 +10,8 @@
     <h1>Waiter Admin</h1>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <asp:Label ID="Label1" runat="server" Text="Select Waiter for Update"></asp:Label>
-    <asp:DropDownList ID="WaiterList" runat="server" DataSourceID="ODSWaiters" DataTextField="FullName" DataValueField="WaiterID" Height="16px" Width="196px" AppendDataBoundItems="True">
-    <asp:ListItem Value="0">Select Waiter</asp:ListItem>
+    <asp:DropDownList ID="WaiterList" runat="server" DataSourceID="ODSWaiters" DataTextField="FullName" DataValueField="WaiterID" Height="16px" Width="196px">
+   
     </asp:DropDownList>
     <asp:LinkButton ID="FetchWaiter" runat="server" OnClick="FetchWaiter_Click">Fetch Waiter</asp:LinkButton>
     
@@ -67,10 +67,10 @@
         </tr>
         <tr>
             <td style="width: 327px">
-                <asp:LinkButton ID="Insert" runat="server">Insert</asp:LinkButton>
+                <asp:LinkButton ID="Insert" runat="server" OnClick="Insert_Click">Insert</asp:LinkButton>
             </td>
             <td>
-                <asp:LinkButton ID="UpdateWaiter" runat="server">Update</asp:LinkButton>
+                <asp:LinkButton ID="UpdateWaiter" runat="server" OnClick="UpdateWaiter_Click">Update</asp:LinkButton>
             </td>
         </tr>
        

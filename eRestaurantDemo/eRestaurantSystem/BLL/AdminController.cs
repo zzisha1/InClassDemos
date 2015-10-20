@@ -100,7 +100,7 @@ namespace eRestaurantSystem.BLL
         }
 
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public List<CategoryMenuItems> CategoryMenuItems_List()
+        public List<eRestaurantSystem.DAL.Entities.DTOs.CategoryMenuItems> CategoryMenuItems_List()
         {
             using (var context = new eRestaurantContext())
             {
@@ -109,7 +109,7 @@ namespace eRestaurantSystem.BLL
 
                 var result = from category in context.MenuCategories
                              orderby category.Description
-                             select new CategoryMenuItems() //DTO
+                             select new eRestaurantSystem.DAL.Entities.DTOs.CategoryMenuItems() //DTO
                              {
                                  Description = category.Description,
                                  MenuItems = from row in category.MenuItems //virtual property ......collection of navigated rows of ICollection in SpecialEvent
@@ -204,7 +204,7 @@ namespace eRestaurantSystem.BLL
             }
         }
 
-        public void Waiters_Add(Waiter item)
+        public int Waiters_Add(Waiter item)
         {
             //input into this method at the instance level
             using (eRestaurantContext context = new eRestaurantContext())
@@ -221,13 +221,16 @@ namespace eRestaurantSystem.BLL
                 //evaluates the annotation (validation) on your entity
                 context.SaveChanges();
 
+                //added contains the data of the newly added waiter including the Pkey value
+                return added.WaiterID;
+
             }
 
 
         }
 
         [DataObjectMethod(DataObjectMethodType.Update, false)]
-        public void Waiter_Update(Waiter item)
+        public void Waiters_Update(Waiter item)
         {
             using (eRestaurantContext context = new eRestaurantContext())
             {
@@ -238,7 +241,7 @@ namespace eRestaurantSystem.BLL
         }
 
         [DataObjectMethod(DataObjectMethodType.Delete, false)]
-        public void Waiter_Delete(Waiter item)
+        public void Waiters_Delete(Waiter item)
         {
             using (eRestaurantContext context = new eRestaurantContext())
             {
@@ -273,6 +276,28 @@ namespace eRestaurantSystem.BLL
 
             }
         }
+
+        
+
+         [DataObjectMethod(DataObjectMethodType.Select, false)]
+         public List<eRestaurantSystem.DAL.Entities.POCOs.CategoryMenuItems> GetReportCategoryMenuItems()
+         {
+             using (eRestaurantContext context = new eRestaurantContext())
+             {
+                 var results = from cat in context.Items
+                               orderby cat.Category.Description, cat.Description
+                               select new eRestaurantSystem.DAL.Entities.POCOs.CategoryMenuItems
+                               {
+                                   CategoryDescription = cat.Category.Description,
+                                   ItemDescription = cat.Description,
+                                   Price = cat.CurrentPrice,
+                                   Calories = cat.Calories,
+                                   Comment = cat.Comment
+                               };
+
+                 return results.ToList(); // this was .Dump() in Linqpad
+             }
+         }
         #endregion
 
 

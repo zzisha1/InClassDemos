@@ -32,6 +32,7 @@ namespace eRestaurantSystem.DAL
         public DbSet<Table> Tables { get; set; }
         public DbSet<MenuCategory> MenuCategories { get; set; }
         public DbSet<Waiter> Waiters { get; set; }
+        public DbSet<Item> Items { get; set; }
         
         //when overriding onModelCreating() it is impo to remember to call base method implementation before you exit the method
         //the ManyToManyNavigationPropertyConfiguration.Map method lets you 
