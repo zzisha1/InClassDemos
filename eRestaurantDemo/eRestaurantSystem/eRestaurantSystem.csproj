@@ -59,6 +59,7 @@
     <Compile Include="DAL\Entities\POCOs\CategoryMenuItems.cs" />
     <Compile Include="DAL\Entities\POCOs\MenuItem.cs" />
     <Compile Include="DAL\Entities\POCOs\ReservationDetail.cs" />
+    <Compile Include="DAL\Entities\POCOs\WaiterBilling.cs" />
     <Compile Include="DAL\Entities\Reservation.cs" />
     <Compile Include="DAL\Entities\SpecialEvent.cs" />
     <Compile Include="DAL\Entities\Table.cs" />
