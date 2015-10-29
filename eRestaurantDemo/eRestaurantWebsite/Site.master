@@ -14,6 +14,7 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <meta name="description" content="The description of my page" />
 </head>
 <body>
     <form runat="server">
@@ -60,7 +61,10 @@
                         <li><a runat="server" href="~/Command Pages/WaiterAdmin">Waiter CRUD</a></li>
                         <li><a runat="server" href="~/Reports/MenuCategoryItemReport">Menu Category Report</a></li>
                         <li><a runat="server" href="~/Reports/WaiterBillingReport">Waiter Billing</a></li>
+                         <li><a runat="server" href="~/UXPages/FrontDesk">Front Desk</a></li>
                     </ul>
+
+                   
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
