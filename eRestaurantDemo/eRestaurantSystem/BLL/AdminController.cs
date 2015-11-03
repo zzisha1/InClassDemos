@@ -336,7 +336,46 @@ namespace eRestaurantSystem.BLL
                     return result;
                 }
             }
-       
+
+            [DataObjectMethod(DataObjectMethodType.Select)]
+            public List<ReservationCollection> ReservationsByTime(DateTime date)
+            {
+                 using (var context = new eRestaurantContext())
+                 {
+                        var result = (from data in context.Reservations
+                                      where data.ReservationDate.Year == date.Year
+                                      && data.ReservationDate.Month == date.Month
+                                      && data.ReservationDate.Day == date.Day
+                                          // && data.ReservationDate.Hour == timeSlot.Hours
+                                      && data.ReservationStatus == Reservation.Booked //reservation.Booked
+                                      select new ReservationSummary()
+                                      {
+                                          ID = data.ReservationID,
+                                          Name = data.CustomerName,
+                                          Date = data.ReservationDate,
+                                          NumberInParty = data.NumberInParty,
+                                          Status = data.ReservationStatus,
+                                          Event = data.Event.Description,
+                                          Contact = data.ContactPhone
+                                      }).ToList();
+                     //the second part of this method uses the results of the first LINQ query
+                     //linq to entity will only execute the query when it deems
+                     //necessary for having the results in memory
+                     // ToList() is used so that I can use the value later
+
+                     //the second query is not using a entity
+                        var finalResult = from item in result
+                                          //orderby item.NumberInParty
+                                          group item by item.Date.Hour into itemGroup   //itemGroup is  temporary
+                                          select new ReservationCollection()
+                                          {
+                                              Hour = itemGroup.Key,
+                                              Reservations = itemGroup.ToList()
+                                          };
+                        return finalResult.OrderBy(x => x.Hour).ToList();
+                    }
+                }
+            
         #endregion
 
     } //eof class
